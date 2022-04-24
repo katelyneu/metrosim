@@ -1,0 +1,4 @@
+Passenger 2 left the train at station station_2
+Passenger 1 left the train at station station_0
+Passenger 1 left the train at station MGH
+Passenger 3 left the train at station Downtown Crossing

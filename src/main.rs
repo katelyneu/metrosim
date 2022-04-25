@@ -34,8 +34,8 @@ fn main() {
             println!("Command? ");
             if let Ok(lines) = read_lines(commands_file) {
                 for line in lines {
-                    if let Ok(input) = line {
-                        parse_input(input, &mut simulator);
+                    if let Ok(cmd) = line {
+                        run_cmd(cmd, &mut simulator);
                     }
                 }
             }
@@ -43,24 +43,24 @@ fn main() {
         None => {
             loop {
                 println!("Command? ");
-                
+
                 let stdin = io::stdin();
-                let mut input = String::new();
-                match stdin.read_line(&mut input) {
+                let mut cmd = String::new();
+                match stdin.read_line(&mut cmd) {
                     Ok(_) => {},
                     Err(_) => panic!("Error reading in user input"),
                 };
-                parse_input(input, &mut simulator);
+                run_cmd(cmd, &mut simulator);
             }
         }
     }
 }
 
-fn parse_input(input: String, simulator: &mut Simulator) {
-    let cleaned = input
+fn run_cmd(cmd: String, simulator: &mut Simulator) {
+    let cleaned = cmd
         .as_str()
         .strip_suffix("\n")
-        .unwrap_or(input.as_str());
+        .unwrap_or(cmd.as_str());
 
     if cleaned == "m m" {
         simulator.move_train();

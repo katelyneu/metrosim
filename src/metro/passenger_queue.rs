@@ -4,7 +4,6 @@ use std::{collections::VecDeque, fmt};
 /*****************************************************************************/
 
 /*****************************************************************************/
-#[derive(Clone)]
 pub struct PassengerQueue {
     queue: VecDeque<Passenger>,
 }
@@ -38,7 +37,7 @@ impl PassengerQueue {
 impl fmt::Display for PassengerQueue {
     fn fmt(&self, output_stream: &mut fmt::Formatter) -> fmt::Result {
         let mut output_str = String::new();
-        for p in self.queue.clone() {
+        for p in &self.queue {
             output_str = output_str + format!("{}", p).as_str();
         }
         write!(
